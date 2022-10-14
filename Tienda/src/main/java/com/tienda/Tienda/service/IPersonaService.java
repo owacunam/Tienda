@@ -12,5 +12,9 @@ import java.util.List;
  * @author owenm
  */
 public interface IPersonaService {
-    public List<Persona> listpeople();
+    public List<Persona> getAllPersona();
+    public Persona getPersonaById (long id);
+    public void savePersona(Persona persona);
+    public void delete (long id);
+    
 }
