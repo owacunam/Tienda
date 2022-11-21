@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.tienda.Tienda.service;
+package com.tienda.service;
 
-import com.tienda.Tienda.entity.Pais;
-import com.tienda.Tienda.repository.PaisRepository;
+import com.tienda.entity.Pais;
+import com.tienda.repository.PaisRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
