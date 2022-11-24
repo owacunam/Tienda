@@ -12,35 +12,35 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 /**
  *
  * @author owenm
  */
+public class UserPrincipal implements UserDetails {
 
-
-public class UserPrincipal implements UserDetails{
     private Persona persona;
 
     public UserPrincipal(Persona persona) {
         this.persona = persona;
     }
-    
+
     @Override
-    public Collection <? extends GrantedAuthority> getAuthorities(){
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        
+            
+        //Extract list of permissions (name)
         this.persona.getPermissionList().forEach(p -> {
-        GrantedAuthority authority = new SimpleGrantedAuthority(p);
-        authorities.add(authority);
-        });  
-        
-        this.persona.getRoleList().forEach(r ->{
-        GrantedAuthority authority  = new SimpleGrantedAuthority ("ROLE_" + r);
-        authorities.add(authority);
-    });
+            GrantedAuthority authority = new SimpleGrantedAuthority(p);
+            authorities.add(authority);
+        });
+
+        //Extract list of roles(ROLE_name)
+        this.persona.getRoleList().forEach(r -> {
+            GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + r);
+            authorities.add(authority);
+        });
         return authorities;
-}
+    }
 
     @Override
     public String getPassword() {
@@ -54,7 +54,7 @@ public class UserPrincipal implements UserDetails{
 
     @Override
     public boolean isAccountNonExpired() {
-      return true;  
+        return true;
     }
 
     @Override
@@ -64,11 +64,11 @@ public class UserPrincipal implements UserDetails{
 
     @Override
     public boolean isCredentialsNonExpired() {
-       return true;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-         return this.persona.getActive()==1;
+        return this.persona.getActive() == 1;
     }
 }
