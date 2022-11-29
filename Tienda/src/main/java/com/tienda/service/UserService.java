@@ -26,6 +26,5 @@ public class UserService implements UserDetailsService {
         Persona persona = this.personaService.findByNombre(username);
         UserPrincipal userPrincipal = new UserPrincipal(persona);
         return userPrincipal;
-
     }
 }
